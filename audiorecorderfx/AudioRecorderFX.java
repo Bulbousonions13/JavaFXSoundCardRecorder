@@ -6,6 +6,7 @@
 package audiorecorderfx;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -31,6 +32,9 @@ public class AudioRecorderFX extends Application {
         Button stopBtn = new Button();
         stopBtn.setText("STOP");
         
+        Button exitBtn = new Button();
+        exitBtn.setText("EXIT");
+        
         recBtn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -49,9 +53,18 @@ public class AudioRecorderFX extends Application {
             }
         });
         
+        exitBtn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                Platform.exit();
+            }
+        });
+        
         FlowPane root = new FlowPane();
         root.getChildren().add(recBtn);
         root.getChildren().add(stopBtn);
+        root.getChildren().add(exitBtn);
         
         Scene scene = new Scene(root, 300, 250);
         
